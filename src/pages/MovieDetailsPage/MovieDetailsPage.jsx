@@ -1,3 +1,3 @@
 export default function MovieDetailsPage(){
-    return (<di></di>);
+    return (<di>details</di>);
 }

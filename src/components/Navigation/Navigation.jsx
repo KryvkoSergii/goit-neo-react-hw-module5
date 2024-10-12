@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
+import css from "./Navigation.module.css"
 
 export default function Navigation() {
   return (
-    <nav>
+    <nav className={css.navigation}>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/movies">About</NavLink>
     </nav>
