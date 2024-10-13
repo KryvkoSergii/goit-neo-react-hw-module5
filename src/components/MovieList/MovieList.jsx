@@ -22,7 +22,6 @@ export default function MovieList({
     <div>
       {header && <h1>{header}</h1>} 
       {movies && <ul> {movies.results.map((movie) => getMovieRender(movie, location))}</ul>}
-      {!movies && "Nothing found"}
     </div>
   );
 }
