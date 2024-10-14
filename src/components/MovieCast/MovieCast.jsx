@@ -2,7 +2,7 @@ import * as api from "../../components/API";
 import { useParams } from "react-router-dom";
 import css from "./MovieCast.module.css";
 import { useState, useEffect } from "react";
-import Icons from "../../assets/icon.svg";
+import NoPhoto from "../../assets/no-photo.svg";
 
 export default function MovieCast() {
   const [movieCast, setMovieCast] = useState();
@@ -32,9 +32,7 @@ function singleActor(actor) {
       {actor.profile_path ? (
         <img src={api.getImgSrc(actor.profile_path)} />
       ) : (
-        <svg>
-          <use xlinkHref={`${Icons}#no-photo`}></use>
-        </svg>
+        <img src={NoPhoto} />
       )}
       <a>{actor.name}</a>
       <a>Character: {actor.character}</a>

@@ -9,9 +9,18 @@ export default function MoviesPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  let queryUrl = searchParams.get("query");
-  queryUrl = queryUrl ? queryUrl : "";
+  const queryUrl = searchParams.get("query") ? searchParams.get("query") : "";
   const [searchQuery, setSearchQuery] = useState(queryUrl);
+
+  const [movies, setMovies] = useState();
+
+  useEffect(() => {
+    async function resolveMovies() {
+      const response = await api.searchMovies(searchQuery);
+      setMovies(response);
+    }
+    if(searchQuery) { resolveMovies();}
+  }, [searchQuery]);
 
   useEffect(() => {
     if (!extractedQuery && document.getElementById("searchQueryField")) {
@@ -33,11 +42,7 @@ export default function MoviesPage() {
         <input id="searchQueryField" placeholder="Search for the movie..." />
         <button type="submit">Search</button>
       </form>
-      <MovieList
-        fetchMovieFunction={() => searchQuery && api.searchMovies(searchQuery)}
-        header={null}
-        listenableField={searchQuery}
-      />
+      <MovieList movies={movies}/>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "../API";
 import css from "./MovieReviews.module.css";
-import Icons from "../../assets/icon.svg";
+import NoPhoto from "../../assets/no-photo.svg";
 
 export default function MovieReviews() {
   const [movieReviews, setMovieReviews] = useState();
@@ -33,9 +33,7 @@ export default function MovieReviews() {
             {review.author_details && review.author_details.avatar_path ? (
               <img src={api.getImgSrc(review.author_details.avatar_path)} />
             ) : (
-              <svg>
-                <use xlinkHref={`${Icons}#no-photo`}></use>
-              </svg>
+              <img src={NoPhoto}/>
             )}
           </div>
           <div className={css.metadata}>

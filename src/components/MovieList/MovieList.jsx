@@ -1,29 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-export default function MovieList({
-  fetchMovieFunction,
-  header,
-  listenableField,
-}) {
+export default function MovieList({movies}) {
   const location = useLocation();
-  const [movies, setMovies] = useState();
-
-  useEffect(() => {
-    async function resolveMovies() {
-      const response = await fetchMovieFunction();
-      setMovies(response);
-    }
-    resolveMovies();
-  }, [listenableField]);
-
-  return (
-    <div>
-      {header && <h1>{header}</h1>} 
-      {movies && <ul> {movies.results.map((movie) => getMovieRender(movie, location))}</ul>}
-    </div>
-  );
+  return (movies && <ul> {movies.results.map((movie) => getMovieRender(movie, location))}</ul>);
 }
 
 function getMovieRender(movie, location) {
@@ -37,7 +17,5 @@ function getMovieRender(movie, location) {
 }
 
 MovieList.propTypes = {
-  fetchMovieFunction: PropTypes.func,
-  header: PropTypes.string,
-  listenableField: PropTypes.any,
+  movies: PropTypes.object
 };

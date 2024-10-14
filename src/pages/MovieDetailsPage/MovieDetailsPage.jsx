@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, Outlet, useParams, useLocation, useNavigate } from "react-router-dom";
 import * as api from "../../components/API";
 import css from "./MovieDetailsPage.module.css";
-import Icons from "../../assets/icon.svg";
+import ArrowLeft from '../../assets/arrow-left.svg';
 
 export default function MovieDetailsPage() {
   const [movieDetails, setMovieDetails] = useState();
@@ -26,9 +26,7 @@ export default function MovieDetailsPage() {
   return (
     <div className={css.movie_details_page}>
       <button className={css.go_back} onClick={onBack}>
-        <svg>
-          <use xlinkHref={`${Icons}#go-back`}></use>
-        </svg>{" "}
+        <img src={ArrowLeft} />{" "}
         Go back
       </button>
       {movieDetails && (

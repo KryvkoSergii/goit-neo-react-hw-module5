@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import * as api from "../../components/API";
 import MovieList from "../../components/MovieList/MovieList";
@@ -8,12 +8,21 @@ export default function HomePage() {
     return getToday();
   });
 
+  const [movies, setMovies] = useState();
+
+  useEffect(() => {
+    async function resolveMovies() {
+      const response = await api.fetchTendingMovies();
+      setMovies(response);
+    }
+    resolveMovies();
+  }, [today]);
+
   return (
-    <MovieList
-      fetchMovieFunction={api.fetchTendingMovies}
-      header={'Trending today'}
-      listenableField={today}
-    />
+    <div>
+      <h1>Trending today</h1>
+      <MovieList movies={movies} />
+    </div>
   );
 }
 

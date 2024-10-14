@@ -17,12 +17,13 @@
     display: flex;
 }
 
-.header img,
-.header svg{
+.header img{
     max-width: 100px;
     border: 1px dashed grey;
     padding: 5px;
     object-fit: contain;
+    fill: black;
+    width: 130px;
 }
 
 .metadata{
