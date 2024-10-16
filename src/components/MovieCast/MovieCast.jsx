@@ -5,24 +5,22 @@ import { useState, useEffect } from "react";
 import NoPhoto from "../../assets/no-photo.svg";
 
 export default function MovieCast() {
-  const [movieCast, setMovieCast] = useState();
+  const [movieCast, setMovieCast] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
     async function resolveMovieCast(movieId) {
       const response = await api.fetchMovieCast(movieId);
-      setMovieCast(response);
+      setMovieCast(response.cast);
     }
 
     resolveMovieCast(movieId);
   }, [movieId]);
 
   return (
-    movieCast && (
-      <ul className={css.movie_cast}>
-        {movieCast.cast.map((cast) => singleActor(cast))}
-      </ul>
-    )
+    <ul className={css.movie_cast}>
+      {movieCast.map((cast) => singleActor(cast))}
+    </ul>
   );
 }
 

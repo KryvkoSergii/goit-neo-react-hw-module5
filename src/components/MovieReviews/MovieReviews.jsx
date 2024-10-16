@@ -5,21 +5,21 @@ import css from "./MovieReviews.module.css";
 import NoPhoto from "../../assets/no-photo.svg";
 
 export default function MovieReviews() {
-  const [movieReviews, setMovieReviews] = useState();
+  const [movieReviews, setMovieReviews] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
     async function resolveMovieCast(movieId) {
-      const response = await api.fetchMovieRevies(movieId);
-      setMovieReviews(response);
+      const response = await api.fetchMovieReviews(movieId);
+      setMovieReviews(response.results);
     }
 
     resolveMovieCast(movieId);
   }, [movieId]);
 
-  return movieReviews && movieReviews.results.length > 0 ? (
+  return movieReviews && movieReviews.length > 0 ? (
     <ul className={css.review_list}>
-      {movieReviews.results.map((cast) => singleActor(cast))}
+      {movieReviews.map((review) => singleActor(review))}
     </ul>
   ) : (
     "No review yet"

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export default function MovieList({movies}) {
   const location = useLocation();
-  return (movies && <ul> {movies.results.map((movie) => getMovieRender(movie, location))}</ul>);
+  return <ul> {movies.map((movie) => getMovieRender(movie, location))}</ul>;
 }
 
 function getMovieRender(movie, location) {
@@ -17,5 +17,5 @@ function getMovieRender(movie, location) {
 }
 
 MovieList.propTypes = {
-  movies: PropTypes.object
+  movies: PropTypes.arrayOf(PropTypes.object)
 };

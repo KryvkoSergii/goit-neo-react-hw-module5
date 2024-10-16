@@ -40,7 +40,7 @@ export async function fetchMovieCast(movieId) {
   }
 }
 
-export async function fetchMovieRevies(movieId) {
+export async function fetchMovieReviews(movieId) {
   try {
     const response = await axios.get(`/movie/${movieId}/reviews?language=en-US`, options);
     return response.data;

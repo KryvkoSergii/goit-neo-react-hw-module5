@@ -8,12 +8,12 @@ export default function HomePage() {
     return getToday();
   });
 
-  const [movies, setMovies] = useState();
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     async function resolveMovies() {
       const response = await api.fetchTendingMovies();
-      setMovies(response);
+      setMovies(response.results);
     }
     resolveMovies();
   }, [today]);
