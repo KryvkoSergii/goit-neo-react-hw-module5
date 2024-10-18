@@ -2,12 +2,10 @@ import css from "./MoviesPage.module.css";
 import * as api from "../../components/API";
 import MovieList from "../../components/MovieList/MovieList";
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function MoviesPage() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const queryUrl = searchParams.get("query") ? searchParams.get("query") : "";
   const [searchQuery, setSearchQuery] = useState(queryUrl);
   const [finalSearchQuery, setFinalSearchQuery] = useState(queryUrl);
@@ -25,7 +23,8 @@ export default function MoviesPage() {
   const onSubmit = (event) => {
     event.preventDefault();
     setFinalSearchQuery(searchQuery);
-    navigate(`${location.pathname}?query=${searchQuery}`);
+    console.log(searchQuery);
+    setSearchParams({query: searchQuery});
   };
 
   return (

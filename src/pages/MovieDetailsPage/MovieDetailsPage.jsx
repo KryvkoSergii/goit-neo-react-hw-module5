@@ -32,7 +32,7 @@ export default function MovieDetailsPage() {
       {movieDetails && (
         <div>
           <div className={css.movie_details}>
-            <img src={api.getImgSrc(movieDetails.backdrop_path)} />
+            <img src={api.getImgSrc(movieDetails.poster_path)} />
             <div>
               <h1>
                 {movieDetails.original_title} (
